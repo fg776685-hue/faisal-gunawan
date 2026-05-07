@@ -1,4 +1,3 @@
-// Daftar produk dengan gambar
 const products = [
     { id: 1, name: 'BENG-BENG', price: 2000, img: 'img/bb.jpg' },
     { id: 2, name: 'BONCABE', price: 1000, img: 'img/bon.jpg' },
@@ -6,81 +5,106 @@ const products = [
     { id: 4, name: 'MAXICORN', price: 2000, img: 'img/max.jpg' },
     { id: 5, name: 'QTELA', price: 2000, img: 'img/minuman.jpg' },
     { id: 6, name: 'QTELA', price: 2000, img: 'img/qt.jpg' },
-
-
 ];
 
-// keranjang belanja
+// Keranjang belanja
 let cart = [];
 
-//Fungsi untuk menampilkan daftar produk
-funcetion displayproduct() {
+// Fungsi untuk menampilkan daftar produk
+function displayProducts() {
     const productContainer = document.getElementById('product');
-    productContainer.forEach(product = {
-        const productDiv = document.createElement('div')
+
+    productContainer.innerHTML = '';
+
+    products.forEach(product => {
+        const productDiv = document.createElement('div');
+
         productDiv.classList.add('product');
+
         productDiv.innerHTML = `
-            <img src="#${product.img}" alt="${product.name}">
+            <img src="${product.img}" alt="${product.name}" width="100">
             <h3>${product.name}</h3>
-            <p>${product.price}</p>
-            <button onclick="addToCart(${product.id})">Tambah ke karanjang</button>
-            `;
-            productsContainer.appendChild(productDiv);
+            <p>Rp ${product.price}</p>
+            <button onclick="addToCart(${product.id})">
+                Tambah ke Keranjang
+            </button>
+        `;
+
+        productContainer.appendChild(productDiv);
     });
 }
 
-// Fungsi untuk menambah product ke keranjang belanja
+// Fungsi untuk menambah produk ke keranjang
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
+
     const cartItem = cart.find(item => item.id === productId);
 
     if (cartItem) {
         cartItem.quantity += 1;
     } else {
-        cart.push({ ...product, quantity: 1});
+        cart.push({
+            ...product,
+            quantity: 1
+        });
     }
 
-    updatecart();
+    updateCart();
 }
 
-// Fungsi untuk menampilkan isi keranjang belanja
-function updatecart() {
-    const cartItemsContainer = document.getElementById('cart-itemd');
+// Fungsi untuk menampilkan isi keranjang
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+
     cartItemsContainer.innerHTML = '';
 
-    let totalprice = 0;
+    let totalPrice = 0;
+
     cart.forEach(item => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${item.name} x ${item.quantity} - Rp ${item.price * item.quantity}`;
-        cartItemsContainer.appendChiId(listItem);
+
+        listItem.textContent =
+            `${item.name} x ${item.quantity} - Rp ${item.price * item.quantity}`;
+
+        cartItemsContainer.appendChild(listItem);
 
         totalPrice += item.price * item.quantity;
     });
 
-    document.getElementById('total-price').textContent = totalprice;
+    document.getElementById('total-price').textContent = totalPrice;
 }
 
-//Fungsi untuk melakukan checkout
+// Fungsi checkout
 function checkout() {
     if (cart.length === 0) {
-        alert('Keranjang anda kosong.');
+        alert('Keranjang Anda kosong.');
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const payment = prompt(`Total belanja Anda Rp ${total}. Masukkan jumlah pembayaran:`);
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
+
+    const payment = parseInt(
+        prompt(`Total belanja Anda Rp ${total}\nMasukkan jumlah pembayaran:`)
+    );
 
     if (payment >= total) {
-        alert(`pembayaran berhasil! kembalian Anda: Rp ${payment - total}`);
+        alert(`Pembayaran berhasil!\nKembalian Anda: Rp ${payment - total}`);
+
         cart = [];
-        updatecart();
+
+        updateCart();
     } else {
-        alert('uang Anda tidak mencukupi.');
+        alert('Uang Anda tidak mencukupi.');
     }
 }
 
-//Event listener untuk tombol checkout
-document.getElementById('checkout-btn').addEventListener('click', checkout);
+// Event tombol checkout
+document
+    .getElementById('checkout-btn')
+    .addEventListener('click', checkout);
 
 // Tampilkan produk saat halaman dimuat
 displayProducts();
