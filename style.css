@@ -1,96 +1,146 @@
-{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-body{
-    font-family: Arial, sans-serif;
-    background-image:url('begron-jpg');
-    margin: 0;
-    padding: 20px;
 
+body {
+    font-family: Arial, sans-serif;
+
+    background-image: url('begron.jpg');
+    background-size: cover;
+    background-position: center;
+
+    padding: 20px;
 }
-.container{
+
+/* Container utama */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 
+    background-color: rgba(255, 255, 255, 0.9);
+
+    border-radius: 10px;
+
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Judul */
+h1,
 h2 {
     text-align: center;
+
     margin-bottom: 20px;
+
     background-color: #007bff;
     color: white;
-    width:20%;
+
+    padding: 10px;
+
+    border-radius: 5px;
 }
 
-h1 {
-
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #007bff;
-    color:white;
-    background: size 1ex 1px; ;
-}
-
-
+/* Produk */
 #product-list {
     margin-bottom: 30px;
 }
 
+/* Container produk */
 .product-container {
-    display: wrap;
+    display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
+    justify-content: center;
 }
 
+/* Card produk */
 .product {
     width: 200px;
-    padding: 10px;
-    background-color:white;
-    border: 1px solid white;
+
+    padding: 15px;
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
     text-align: center;
+
+    transition: 0.3s;
 }
 
+/* Hover produk */
+.product:hover {
+    transform: scale(1.05);
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Gambar produk */
 .product img {
-    width: 100%px;
-    height: auto;
+    width: 100%;
+
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
 }
 
+/* Tombol */
 .product button {
-    padding: 10px;
+    padding: 10px 15px;
+
     background-color: #007bff;
-    color:white ;
+
+    color: white;
+
     border: none;
+
+    border-radius: 5px;
+
     cursor: pointer;
+
     margin-top: 10px;
 }
 
-
-.product-list{
-    background-color: #007bff;
-}
-
+/* Hover tombol */
 .product button:hover {
-    background-color: #007bff;
+    background-color: #0056b3;
 }
 
+/* Keranjang */
 #cart {
     margin-top: 30px;
 }
 
+/* List keranjang */
 #cart-items {
     list-style-type: none;
+
     padding: 0;
+
     margin: 0;
 }
 
-#cart-items 1i {
-    padding: 5px 0;
+/* Item keranjang */
+#cart-items li {
+    padding: 10px;
+
+    margin-bottom: 5px;
+
+    background-color: #f1f1f1;
+
+    border-radius: 5px;
 }
-body {
-    background-image: url('begron.jpg');
+
+/* Total harga */
+#total-price {
+    font-weight: bold;
+
+    color: #007bff;
 }
