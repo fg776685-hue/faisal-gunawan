@@ -1,5 +1,5 @@
 const products = [
-    { id: 1, name: 'BENG-BENG', price: 2000, img: 'nabati.png' },
+    { id: 1, name: 'NABATI', price: 2000, img: 'nabati.png' },
     { id: 2, name: 'BONCABE', price: 1000, img: 'boncabe.webp' },
     { id: 3, name: 'CHOCOPIE', price: 2000, img: 'chocopie.jpg' },
     { id: 4, name: 'AQUA', price: 2000, img: 'aqua.jpg' },
